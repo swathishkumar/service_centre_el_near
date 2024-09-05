@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:service_centre_el_near/view/homescreen/widget/helpandfeedbackscreen.dart';
 import 'package:service_centre_el_near/view/homescreen/widget/notificationscreen.dart';
 import 'package:service_centre_el_near/view/homescreen/widget/profilescreen.dart';
+import 'package:service_centre_el_near/view/loginscreen/loginscreen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -116,7 +117,11 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              // Handle logout functionality
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Loginscreen(),
+                  ));
             },
             child: Text('Logout'),
             style: ElevatedButton.styleFrom(
