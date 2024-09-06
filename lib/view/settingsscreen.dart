@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:service_centre_el_near/view/homescreen/widget/aboutscreen.dart';
 import 'package:service_centre_el_near/view/homescreen/widget/helpandfeedbackscreen.dart';
 import 'package:service_centre_el_near/view/homescreen/widget/notificationscreen.dart';
 import 'package:service_centre_el_near/view/homescreen/widget/profilescreen.dart';
@@ -108,7 +109,11 @@ class SettingsScreen extends StatelessWidget {
             subtitle: Text('App information and version'),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
-              // Navigate to About screen
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutScreen(),
+                  ));
             },
           ),
           Divider(),

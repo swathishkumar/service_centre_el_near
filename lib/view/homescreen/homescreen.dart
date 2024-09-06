@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart'; // Import the carousel_slider package
 import 'package:flutter/material.dart';
 import 'package:service_centre_el_near/view/feedbackscreen.dart';
 import 'package:service_centre_el_near/view/loginscreen/loginscreen.dart';
@@ -102,32 +101,32 @@ class Homescreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Carousel Slider
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 200,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                enlargeCenterPage: true,
-                aspectRatio: 16 / 9,
-                viewportFraction: 0.8,
-              ),
-              items: [
-                'asset/banner1.jpg',
-                'asset/banner2.jpg',
-                'asset/banner3.jpg',
-              ]
-                  .map((item) => Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(item),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ))
-                  .toList(),
-            ),
+            // CarouselSlider(
+            //   options: CarouselOptions(
+            //     height: 200,
+            //     autoPlay: true,
+            //     autoPlayInterval: Duration(seconds: 3),
+            //     enlargeCenterPage: true,
+            //     aspectRatio: 16 / 9,
+            //     viewportFraction: 0.8,
+            //   ),
+            //   items: [
+            //     'asset/banner1.jpg',
+            //     'asset/banner2.jpg',
+            //     'asset/banner3.jpg',
+            //   ]
+            //       .map((item) => Container(
+            //             margin: EdgeInsets.symmetric(horizontal: 5.0),
+            //             decoration: BoxDecoration(
+            //               image: DecorationImage(
+            //                 image: AssetImage(item),
+            //                 fit: BoxFit.cover,
+            //               ),
+            //               borderRadius: BorderRadius.circular(10),
+            //             ),
+            //           ))
+            //       .toList(),
+            // ),
             SizedBox(
                 height:
                     20), // Add some spacing between the carousel and the rest of the content

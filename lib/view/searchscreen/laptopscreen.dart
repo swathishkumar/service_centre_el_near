@@ -35,12 +35,12 @@ class _LaptopDetailsFormScreenState extends State<LaptopDetailsFormScreen> {
   String? selectedBrand;
   String? selectedLocation;
   final TextEditingController productNameController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
+  // final TextEditingController phoneNumberController = TextEditingController();
 
   @override
   void dispose() {
     productNameController.dispose();
-    phoneNumberController.dispose();
+    // phoneNumberController.dispose();
     super.dispose();
   }
 
@@ -123,26 +123,28 @@ class _LaptopDetailsFormScreenState extends State<LaptopDetailsFormScreen> {
                     });
                   },
                 ),
-                const SizedBox(height: 20),
+                // const SizedBox(height: 20),
 
-                // Phone Number Field
-                TextField(
-                  controller: phoneNumberController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Phone Number',
-                  ),
-                  keyboardType: TextInputType.phone,
-                ),
+                // // Phone Number Field
+                // TextField(
+                //   controller: phoneNumberController,
+                //   decoration: const InputDecoration(
+                //     border: OutlineInputBorder(),
+                //     labelText: 'Phone Number',
+                //   ),
+                //   keyboardType: TextInputType.phone,
+                // ),
                 const SizedBox(height: 30),
 
                 // Submit Button
                 ElevatedButton(
                   onPressed: () {
                     if (selectedBrand != null &&
-                        selectedLocation != null &&
-                        productNameController.text.isNotEmpty &&
-                        phoneNumberController.text.isNotEmpty) {
+                            selectedLocation != null &&
+                            productNameController.text.isNotEmpty
+                        //  &&
+                        // phoneNumberController.text.isNotEmpty
+                        ) {
                       // Proceed with the form submission logic
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -167,7 +169,7 @@ class _LaptopDetailsFormScreenState extends State<LaptopDetailsFormScreen> {
                     backgroundColor: const Color.fromARGB(255, 57, 92, 152),
                   ),
                   child: const Text(
-                    'Submit',
+                    'Search',
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
