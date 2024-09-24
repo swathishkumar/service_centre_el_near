@@ -21,7 +21,6 @@ class FeedbackScreen extends StatelessWidget {
               // style: Theme.of(context).textTheme.headline6?.copyWith(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-
             // Feedback Form
             Expanded(
               child: SingleChildScrollView(

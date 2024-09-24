@@ -1,6 +1,7 @@
 // import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:service_centre_el_near/view/screen/details.dart';
 
 class HeadsetDetailsFormScreen extends StatefulWidget {
   const HeadsetDetailsFormScreen({super.key});
@@ -154,11 +155,11 @@ class _HeadsetDetailsFormScreenState extends State<HeadsetDetailsFormScreen> {
                         ) {
                       // You can handle submission logic here
                       // For now, just show a message
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Form submitted successfully!'),
-                        ),
-                      );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(),
+                          ));
                     } else {
                       // Show error if any field is missing
                       ScaffoldMessenger.of(context).showSnackBar(

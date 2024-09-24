@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:service_centre_el_near/view/screen/details.dart';
 
 class SmartWatchDetailsFormScreen extends StatefulWidget {
   const SmartWatchDetailsFormScreen({super.key});
@@ -152,11 +153,11 @@ class _SmartWatchDetailsFormScreenState
                         // phoneNumberController.text.isNotEmpty
                         ) {
                       // Proceed with the form submission logic
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Form Submitted Successfully!'),
-                        ),
-                      );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(),
+                          ));
                     } else {
                       // Show error if any field is missing
                       ScaffoldMessenger.of(context).showSnackBar(

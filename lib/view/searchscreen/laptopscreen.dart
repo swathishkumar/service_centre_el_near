@@ -1,6 +1,7 @@
 // import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:service_centre_el_near/view/screen/details.dart';
 
 class LaptopDetailsFormScreen extends StatefulWidget {
   const LaptopDetailsFormScreen({super.key});
@@ -146,11 +147,12 @@ class _LaptopDetailsFormScreenState extends State<LaptopDetailsFormScreen> {
                         // phoneNumberController.text.isNotEmpty
                         ) {
                       // Proceed with the form submission logic
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Form Submitted Successfully!'),
-                        ),
-                      );
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(),
+                          ));
                     } else {
                       // Show error if any field is missing
                       ScaffoldMessenger.of(context).showSnackBar(

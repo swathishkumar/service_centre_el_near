@@ -1,241 +1,144 @@
 import 'package:flutter/material.dart';
 
-class ServiceCentre {
-  final String brandName;
-  final String serviceCentreName;
-  final String contactNumber;
-  final String location;
-  final String shopImage;
-  final String timings;
+// Define the Store class
+class Store {
+  String name;
+  String location;
+  String mobileNumber;
+  String imageUrl;
 
-  ServiceCentre({
-    required this.brandName,
-    required this.serviceCentreName,
-    required this.contactNumber,
+  Store({
+    required this.name,
     required this.location,
-    required this.shopImage,
-    required this.timings,
+    required this.mobileNumber,
+    required this.imageUrl,
   });
 }
 
-class ShopDetailsDisplayScreen extends StatefulWidget {
-  final List<ServiceCentre> serviceCentres;
+// Sample data for mobile and laptop service centers in Kochi
+List<Store> serviceCentersInKochi = [
+  Store(
+    name: "Mobile Fix",
+    location: "MG Road, Kochi",
+    mobileNumber: "+91 9876543210",
+    imageUrl: "https://example.com/images/mobilefix.jpg",
+  ),
+  Store(
+    name: "Laptop Care",
+    location: "Marine Drive, Kochi",
+    mobileNumber: "+91 9876543211",
+    imageUrl: "https://example.com/images/laptopcare.jpg",
+  ),
+  Store(
+    name: "Techno Repair",
+    location: "Vytilla, Kochi",
+    mobileNumber: "+91 9876543212",
+    imageUrl: "https://example.com/images/technorepair.jpg",
+  ),
+  Store(
+    name: "QuickFix Mobiles",
+    location: "Palarivattom, Kochi",
+    mobileNumber: "+91 9876543213",
+    imageUrl: "https://example.com/images/quickfixmobiles.jpg",
+  ),
+  Store(
+    name: "Laptop Pro",
+    location: "Edappally, Kochi",
+    mobileNumber: "+91 9876543214",
+    imageUrl: "https://example.com/images/laptoppro.jpg",
+  ),
+  Store(
+    name: "SmartPhone Clinic",
+    location: "Kadavanthra, Kochi",
+    mobileNumber: "+91 9876543215",
+    imageUrl: "https://example.com/images/smartphoneclinic.jpg",
+  ),
+  Store(
+    name: "Laptop Hub",
+    location: "Kaloor, Kochi",
+    mobileNumber: "+91 9876543216",
+    imageUrl: "https://example.com/images/laptophub.jpg",
+  ),
+  Store(
+    name: "Gadget Rescue",
+    location: "Thrikkakara, Kochi",
+    mobileNumber: "+91 9876543217",
+    imageUrl: "https://example.com/images/gadgetrescue.jpg",
+  ),
+  Store(
+    name: "Mobile Masters",
+    location: "Aluva, Kochi",
+    mobileNumber: "+91 9876543218",
+    imageUrl: "https://example.com/images/mobilemasters.jpg",
+  ),
+  Store(
+    name: "Laptop Express",
+    location: "Fort Kochi, Kochi",
+    mobileNumber: "+91 9876543219",
+    imageUrl:
+        "https://d2ocdqfo0e576d.cloudfront.net/1205/store-images/dell-exclusive-store-1205-store-image-100.JPG",
+  ),
+];
 
-  const ShopDetailsDisplayScreen({super.key, required this.serviceCentres});
-
-  @override
-  _ShopDetailsDisplayScreenState createState() =>
-      _ShopDetailsDisplayScreenState();
-}
-
-class _ShopDetailsDisplayScreenState extends State<ShopDetailsDisplayScreen> {
-  String? selectedBrand;
-
-  final List<String> availableBrands = [
-    'Samsung',
-    'Apple',
-    'OnePlus',
-    'Xiaomi',
-    'Oppo',
-    'Vivo',
-    'Realme',
-    'Google Pixel',
-  ];
-
+// DetailsScreen that displays the service centers
+class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Filter the service centers by the selected brand
-    List<ServiceCentre> filteredCentres = selectedBrand == null
-        ? []
-        : widget.serviceCentres
-            .where((serviceCentre) => serviceCentre.brandName == selectedBrand)
-            .toList();
-
-    // Limit to 5 shops
-    filteredCentres = filteredCentres.take(5).toList();
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Service Centres for $selectedBrand'),
+        title: Text('Service Centers in Kochi'),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('asset/appbg.jpeg'),
-            fit: BoxFit.fill,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Brand Dropdown
-              DropdownButtonFormField<String>(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Select Brand',
-                ),
-                value: selectedBrand,
-                items: availableBrands.map((String brand) {
-                  return DropdownMenuItem<String>(
-                    value: brand,
-                    child: Text(brand),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedBrand = newValue;
-                  });
-                },
+      body: ListView.builder(
+        itemCount: serviceCentersInKochi.length,
+        itemBuilder: (context, index) {
+          final store = serviceCentersInKochi[index];
+          return Card(
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              leading: Image.network(
+                store.imageUrl,
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
               ),
-              const SizedBox(height: 20),
-
-              // Display Shops List
-              Expanded(
-                child: filteredCentres.isEmpty
-                    ? Center(
-                        child: Text(
-                          selectedBrand == null
-                              ? 'Please select a brand'
-                              : 'No service centres available for $selectedBrand',
-                          style: const TextStyle(
-                              fontSize: 18, color: Colors.black87),
-                        ),
-                      )
-                    : ListView.builder(
-                        itemCount: filteredCentres.length,
-                        itemBuilder: (context, index) {
-                          final serviceCentre = filteredCentres[index];
-
-                          return Card(
-                            margin: const EdgeInsets.symmetric(vertical: 10.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            elevation: 5,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Shop Image Section
-                                  Container(
-                                    width: double.infinity,
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      image: DecorationImage(
-                                        image:
-                                            AssetImage(serviceCentre.shopImage),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-
-                                  // Service Centre Details
-                                  Text(
-                                    serviceCentre.serviceCentreName,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Colors.black87,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-
-                                  // Brand Name
-                                  Text(
-                                    'Brand: ${serviceCentre.brandName}',
-                                    style: const TextStyle(
-                                        fontSize: 16, color: Colors.black87),
-                                  ),
-                                  const SizedBox(height: 5),
-
-                                  // Contact Number
-                                  Text(
-                                    'Contact: ${serviceCentre.contactNumber}',
-                                    style: const TextStyle(
-                                        fontSize: 16, color: Colors.black87),
-                                  ),
-                                  const SizedBox(height: 5),
-
-                                  // Location
-                                  Text(
-                                    'Location: ${serviceCentre.location}',
-                                    style: const TextStyle(
-                                        fontSize: 16, color: Colors.black87),
-                                  ),
-                                  const SizedBox(height: 5),
-
-                                  // Timings
-                                  Text(
-                                    'Timings: ${serviceCentre.timings}',
-                                    style: const TextStyle(
-                                        fontSize: 16, color: Colors.black87),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+              title: Text(store.name),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Location: ${store.location}"),
+                  Text("Mobile: ${store.mobileNumber}"),
+                ],
               ),
-            ],
-          ),
-        ),
+              onTap: () {
+                // Add any action on tapping the ListTile
+                // For now, it simply shows a SnackBar
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("${store.name} tapped!")),
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: ShopDetailsDisplayScreen(
-      serviceCentres: [
-        ServiceCentre(
-          brandName: 'Samsung',
-          serviceCentreName: 'Samsung Care Centre 1',
-          contactNumber: '1234567890',
-          location: 'Ernakulam',
-          shopImage: 'asset/shop1.jpg',
-          timings: 'Mon-Fri: 9 AM - 6 PM',
-        ),
-        ServiceCentre(
-          brandName: 'Samsung',
-          serviceCentreName: 'Samsung Care Centre 2',
-          contactNumber: '0987654321',
-          location: 'Kakkanad',
-          shopImage: 'asset/shop2.jpg',
-          timings: 'Mon-Fri: 10 AM - 5 PM',
-        ),
-        ServiceCentre(
-          brandName: 'Apple',
-          serviceCentreName: 'Apple Service Centre 1',
-          contactNumber: '9876543210',
-          location: 'Aluva',
-          shopImage: 'asset/shop3.jpg',
-          timings: 'Mon-Sat: 9 AM - 6 PM',
-        ),
-        ServiceCentre(
-          brandName: 'OnePlus',
-          serviceCentreName: 'OnePlus Service Centre',
-          contactNumber: '1231231234',
-          location: 'Ernakulam',
-          shopImage: 'asset/shop4.jpg',
-          timings: 'Mon-Fri: 9 AM - 6 PM',
-        ),
-        ServiceCentre(
-          brandName: 'Samsung',
-          serviceCentreName: 'Samsung Care Centre 3',
-          contactNumber: '1122334455',
-          location: 'Perumbavoor',
-          shopImage: 'asset/shop5.jpg',
-          timings: 'Mon-Sat: 9 AM - 7 PM',
-        ),
-        // Add more service centres here
-      ],
-    ),
-  ));
-}
+// void main() {
+//   runApp(MyApp());
+// }
+
+// // Main App Widget
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Service Centers in Kochi',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: DetailsScreen(),
+//     );
+//   }
+// }

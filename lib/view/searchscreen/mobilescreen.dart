@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:service_centre_el_near/view/screen/details.dart';
 
 class CustomFormScreen extends StatefulWidget {
   const CustomFormScreen({super.key});
@@ -142,6 +143,11 @@ class _CustomFormScreenState extends State<CustomFormScreen> {
                         // &&
                         // phoneNumberController.text.isNotEmpty
                         ) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(),
+                          ));
                       // Implement the required functionality for submission
                       // or navigate to another screen if needed
                     } else {

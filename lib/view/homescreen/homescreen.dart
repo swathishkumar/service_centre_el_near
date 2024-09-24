@@ -21,6 +21,7 @@ class Homescreen extends StatelessWidget {
               },
               icon: Icon(Icons.menu)),
         ),
+        title: Text(''),
       ),
       drawer: Drawer(
         child: Column(
